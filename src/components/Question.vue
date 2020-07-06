@@ -5,7 +5,7 @@
         <p class="wrap-text bg-dark">Category: <span>{{ question.category.split(":")[0] | ucfirst }}</span></p>
         <p class="wrap-text bg-dark">Topic: <span>{{ question.category.split(":")[1] | ucfirst }}</span></p>
         <p class="wrap-text bg-dark">Difficulty: <span>{{ question.difficulty | ucfirst }}</span></p>
-        <p class="wrap-text bg-dark">Answered: <span>{{ isSubmitted.length }}</span></p>
+        <p class="wrap-text bg-dark">Answered: <span>{{ isSubmitted.filter(val => val).length }}</span></p>
         <p class="wrap-text bg-dark">Correct: <span>{{ isCorrect.filter(val => typeof val === "number").length }}</span></p>
         <p class="wrap-text bg-dark">Incorrect: <span>{{ isWrong.filter(val => typeof val === "number").length }}</span></p>
     </div>
@@ -15,7 +15,7 @@
         v-for="(answer, index) in getAnswers[this.quesIndex]" 
         :key="index" 
         @click.prevent="! isSubmitted[quesIndex] ? handler(index) : null" 
-        :class="[{'correct' : isCorrect[quesIndex] === index}, {'incorrect' : isWrong[quesIndex] === index}, {'selected': selectedAnswers[quesIndex] === index}, {'answer-disabled' : isSubmitted[quesIndex] }, {'answer' : ! isSubmitted[quesIndex] } ]" 
+        :class="[{'correct' : isCorrect[quesIndex] === index}, {'incorrect' : isWrong[quesIndex] === index}, {'selected': selectedAnswers[quesIndex] === index}, {'answer-disabled' : isSubmitted[quesIndex] }, {'answer' : ! isSubmitted[quesIndex] }]" 
         >
             {{ answer }}
         </p>
@@ -39,7 +39,6 @@ export default {
         correctAnswers: [],
         selectedAnswers: [],
         maxIndex: -1,
-        shuffleAnswers: true,
         enable: [],
         isSubmitted: [],
         isCorrect: [],
@@ -62,16 +61,16 @@ export default {
           }
           return this.answers
       },
-  },
-  watch: {
       shuffleAnswers() {
           if(this.quesIndex > this.maxIndex) {
               this.maxIndex = this.quesIndex
-              this.shuffleAnswers = true
-          } else {
-              this.shuffleAnswers = false
+              return true
           }
+          return false
       }
+  },
+  watch: {
+      
   },
   methods: {
       selectAnswer(index) {
@@ -205,7 +204,7 @@ span {
 }
 
 .correct {
-    background-color: #6ED143;
+    background-color: #91D556;
     border-left: 10px groove #1FB909;
     font-weight: bold;
 }
