@@ -10,23 +10,23 @@ import Question from './Question';
 export default {
   name: 'QuestionBox',
   components: {
-      Question,
+    Question,
   },
   data() {
-      return {
-          index: 0,
-      }
+    return {
+      index: 0,
+    }
   },
   props: {
-      questions: Array
+    questions: Array
   },
   methods: {
-      next() {
-          this.index++
-      },
-      back() {
-          this.index--
-      },
+    next() {
+      this.index++
+    },
+    back() {
+      this.index--
+    },
   }
 }
 </script>
