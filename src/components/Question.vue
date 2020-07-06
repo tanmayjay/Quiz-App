@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="ques-info">
+        <p class="wrap-text bg-dark">Question: <span>{{ quesIndex + 1 }}</span> / <span>{{ total }}</span></p>
         <p class="wrap-text bg-dark">Category: <span>{{ question.category.split(":")[0] | ucfirst }}</span></p>
         <p class="wrap-text bg-dark">Topic: <span>{{ question.category.split(":")[1] | ucfirst }}</span></p>
         <p class="wrap-text bg-dark">Difficulty: <span>{{ question.difficulty | ucfirst }}</span></p>
-        <p class="wrap-text bg-dark">Question: <span>{{ quesIndex + 1 }}</span> / <span>{{ total }}</span></p>
         <p class="wrap-text bg-dark">Answered: <span>{{ isSubmitted.length }}</span></p>
         <p class="wrap-text bg-dark">Correct: <span>{{ isCorrect.length }}</span></p>
         <p class="wrap-text bg-dark">Incorrect: <span>{{ isWrong.length }}</span></p>
