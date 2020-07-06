@@ -6,8 +6,8 @@
         <p class="wrap-text bg-dark">Topic: <span>{{ question.category.split(":")[1] | ucfirst }}</span></p>
         <p class="wrap-text bg-dark">Difficulty: <span>{{ question.difficulty | ucfirst }}</span></p>
         <p class="wrap-text bg-dark">Answered: <span>{{ isSubmitted.length }}</span></p>
-        <p class="wrap-text bg-dark">Correct: <span>{{ isCorrect.length }}</span></p>
-        <p class="wrap-text bg-dark">Incorrect: <span>{{ isWrong.length }}</span></p>
+        <p class="wrap-text bg-dark">Correct: <span>{{ isCorrect.filter(val => typeof val === "number").length }}</span></p>
+        <p class="wrap-text bg-dark">Incorrect: <span>{{ isWrong.filter(val => typeof val === "number").length }}</span></p>
     </div>
     <div id="question-box">
         <h2 id="question">{{ question.question }}</h2>
