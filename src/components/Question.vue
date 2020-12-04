@@ -102,7 +102,7 @@ export default {
 <style scoped>
 #ques-info {
   color: #C4C4C4;
-  background: #484848;
+  background-color: #4e4e4e;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -119,7 +119,7 @@ export default {
 }
 
 span {
-  color: #FFFFFF;
+  color: #fdfdfd;
 }
 
 #question-box {
