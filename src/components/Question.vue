@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     getAnswers() {    
-      if(this.shuffleAnswers) {
+      if(this.shuffleAnswers(this.quesIndex, this.maxIndex)) {
         let answers = [...this.question.incorrect_answers, this.question.correct_answer]
         answers = _.shuffle(answers)
         let correctIndex = answers.indexOf(this.question.correct_answer)
@@ -61,13 +61,6 @@ export default {
       }
       return this.answers
     },
-    shuffleAnswers() {
-      if(this.quesIndex > this.maxIndex) {
-        this.maxIndex = this.quesIndex
-        return true
-      }
-      return false
-    }
   },
   methods: {
     selectAnswer(index) {
@@ -90,6 +83,13 @@ export default {
         this.$set( this.isWrong, this.quesIndex, selected )
       }
     },
+    shuffleAnswers(quesIndex, maxIndex) {
+      if(quesIndex > maxIndex) {
+        maxIndex = quesIndex
+        return true
+      }
+      return false
+    }
   },
   filters: {
     ucfirst : value => (
