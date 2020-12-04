@@ -43,6 +43,7 @@ export default {
       isSubmitted: [],
       isCorrect: [],
       isWrong: [],
+      shuffle: false,
     }
   },
   props: {
@@ -50,9 +51,19 @@ export default {
     total: Number,
     quesIndex: Number,
   },
+  watch: {
+      quesIndex() {
+        if(this.quesIndex > this.maxIndex) {
+          this.maxIndex = this.quesIndex
+          this.shuffle = true
+        } else {
+          this.shuffle = true
+        }
+      }
+  },
   computed: {
     getAnswers() {    
-      if(this.shuffleAnswers) {
+      if(this.shuffle) {
         let answers = [...this.question.incorrect_answers, this.question.correct_answer]
         answers = _.shuffle(answers)
         let correctIndex = answers.indexOf(this.question.correct_answer)
@@ -61,13 +72,6 @@ export default {
       }
       return this.answers
     },
-    shuffleAnswers() {
-      if(this.quesIndex > this.maxIndex) {
-        this.maxIndex = this.quesIndex
-        return true
-      }
-      return false
-    }
   },
   methods: {
     selectAnswer(index) {
