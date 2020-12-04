@@ -94,6 +94,13 @@ export default {
         this.$set( this.isWrong, this.quesIndex, selected )
       }
     },
+    shuffleAnswers(quesIndex, maxIndex) {
+      if(quesIndex > maxIndex) {
+        maxIndex = quesIndex
+        return true
+      }
+      return false
+    }
   },
   filters: {
     ucfirst : value => (
